@@ -1,0 +1,68 @@
+<div class="details-container" *ngIf="suggestion">
+  <button class="btn-back" (click)="goBack()">
+    <span>←</span> Back to Suggestions
+  </button>
+
+  <div class="details-card">
+    <div class="details-header">
+      <div>
+        <span class="badge" [ngClass]="getStatusClass(suggestion.status)">
+          {{ getStatusLabel(suggestion.status) }}
+        </span>
+        <span class="category-badge">{{ suggestion.category }}</span>
+      </div>
+      <span class="date">{{ suggestion.date | date: "MMMM d, y" }}</span>
+    </div>
+
+    <h1 class="details-title">{{ suggestion.title }}</h1>
+
+    <div class="details-content">
+      <h2>Description</h2>
+      <p>{{ suggestion.description }}</p>
+    </div>
+
+    <div class="details-meta">
+      <div class="meta-item">
+        <div class="meta-label">Status</div>
+        <div class="meta-value">{{ getStatusLabel(suggestion.status) }}</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Category</div>
+        <div class="meta-value">{{ suggestion.category }}</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Likes</div>
+        <div class="meta-value">{{ suggestion.nbLikes }}</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Submitted</div>
+        <div class="meta-value">{{ suggestion.date | date: "short" }}</div>
+      </div>
+    </div>
+
+    <div class="details-actions" *ngIf="suggestion.status !== 'refusee'">
+      <button class="btn-action" (click)="likeSuggestion(suggestion)">
+        <i class="bi bi-hand-thumbs-up"></i>
+        <span>Like ({{ suggestion.nbLikes }})</span>
+      </button>
+      <button
+        class="btn-action"
+        [class.active]="isFavorite(suggestion)"
+        (click)="addToFavorites(suggestion)"
+      >
+        <i
+          [class]="isFavorite(suggestion) ? 'bi bi-heart-fill' : 'bi bi-heart'"
+        ></i>
+        <span>{{
+          isFavorite(suggestion) ? "Saved" : "Save to Favorites"
+        }}</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="not-found" *ngIf="!suggestion">
+  <h2>Suggestion Not Found</h2>
+  <p>The suggestion you're looking for doesn't exist.</p>
+  <button class="btn-primary" (click)="goBack()">Back to Suggestions</button>
+</div>

@@ -30,18 +30,16 @@
       <div class="card-meta">
         <span class="date">{{ s.date | date: "MMM d, y" }}</span>
         <div class="likes">
-          <span class="like-count">{{ s.nbLikes }}</span>
+          <span class="like-count">{{ s.nbLikes }} likes</span>
         </div>
       </div>
 
-      <div class="card-actions" *ngIf="s.status !== 'refusee'">
-        <button class="btn-action" (click)="likeSuggestion(s)">Like</button>
+      <div class="card-actions">
         <button
-          class="btn-action"
-          [class.active]="isFavorite(s)"
-          (click)="addToFavorites(s)"
+          class="btn-view"
+          [routerLink]="['/suggestions', 'detail', s.id]"
         >
-          {{ isFavorite(s) ? "Saved" : "Save" }}
+          View Details
         </button>
       </div>
     </div>
