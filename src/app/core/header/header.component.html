@@ -1,0 +1,19 @@
+<header class="header">
+  <div class="header-content">
+    <a routerLink="/home" class="logo">SuggestHub</a>
+    <nav class="nav">
+      <a
+        routerLink="/home"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-link"
+        >Home</a
+      >
+      <a routerLink="/suggestions" routerLinkActive="active" class="nav-link"
+        >Suggestions</a
+      >
+      <a href="#" class="nav-link">Favorites</a>
+      <button class="btn-primary">Submit Idea</button>
+    </nav>
+  </div>
+</header>

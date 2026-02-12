@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="header-section">
+    <h1 class="title">Suggestions</h1>
+    <p class="count">
+      {{ filteredSuggestions.length }} of {{ suggestions.length }} suggestions
+    </p>
+  </div>
+
+  <div class="search-wrapper">
+    <input
+      type="text"
+      class="search"
+      [(ngModel)]="searchTerm"
+      placeholder="Search by title or category..."
+    />
+  </div>
+
+  <div class="grid">
+    <div *ngFor="let s of filteredSuggestions" class="card">
+      <div class="card-top">
+        <span class="badge" [ngClass]="getStatusClass(s.status)">{{
+          getStatusLabel(s.status)
+        }}</span>
+        <span class="category">{{ s.category }}</span>
+      </div>
+
+      <h3 class="card-title">{{ s.title }}</h3>
+      <p class="card-desc">{{ s.description }}</p>
+
+      <div class="card-meta">
+        <span class="date">{{ s.date | date: "MMM d, y" }}</span>
+        <div class="likes">
+          <span class="like-count">{{ s.nbLikes }}</span>
+        </div>
+      </div>
+
+      <div class="card-actions" *ngIf="s.status !== 'refusee'">
+        <button class="btn-action" (click)="likeSuggestion(s)">Like</button>
+        <button
+          class="btn-action"
+          [class.active]="isFavorite(s)"
+          (click)="addToFavorites(s)"
+        >
+          {{ isFavorite(s) ? "Saved" : "Save" }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="filteredSuggestions.length === 0" class="empty">
+    <p class="empty-text">No suggestions found</p>
+  </div>
+</div>
