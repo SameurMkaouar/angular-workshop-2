@@ -38,7 +38,7 @@
   border-radius: 8px;
   font-size: 1rem;
   transition: all 0.3s ease;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .form-control:focus {
@@ -144,19 +144,19 @@ select.form-control {
   .form-container {
     margin: 1rem auto;
   }
-  
+
   .form-card {
     padding: 1.5rem;
   }
-  
+
   .form-title {
     font-size: 1.5rem;
   }
-  
+
   .form-actions {
     flex-direction: column-reverse;
   }
-  
+
   .btn {
     width: 100%;
     justify-content: center;

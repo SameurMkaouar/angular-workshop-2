@@ -9,7 +9,17 @@ import { SuggestionDetailsComponent } from './suggestion-details/suggestion-deta
 import { SuggestionFormComponent } from './suggestion-form/suggestion-form.component';
 
 @NgModule({
-  declarations: [SuggestionsComponent, ListSuggestionComponent, SuggestionDetailsComponent, SuggestionFormComponent],
-  imports: [CommonModule, SuggestionsRoutingModule, FormsModule, ReactiveFormsModule],
+  declarations: [
+    SuggestionsComponent,
+    ListSuggestionComponent,
+    SuggestionDetailsComponent,
+    SuggestionFormComponent,
+  ],
+  imports: [
+    CommonModule,
+    SuggestionsRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class SuggestionsModule {}

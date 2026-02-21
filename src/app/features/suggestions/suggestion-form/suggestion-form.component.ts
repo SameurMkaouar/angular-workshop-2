@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-suggestion-form',
   templateUrl: './suggestion-form.component.html',
-  styleUrl: './suggestion-form.component.css'
+  styleUrl: './suggestion-form.component.css',
 })
 export class SuggestionFormComponent implements OnInit {
   suggestionForm!: FormGroup;
@@ -20,27 +20,27 @@ export class SuggestionFormComponent implements OnInit {
     'Sécurité',
     'Communication interne',
     'Accessibilité',
-    'Autre'
+    'Autre',
   ];
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
     const currentDate = new Date().toISOString().split('T')[0];
-    
+
     this.suggestionForm = new FormGroup({
       titre: new FormControl('', [
         Validators.required,
         Validators.minLength(5),
-        Validators.pattern('^[A-Z][a-zA-Z]*$')
+        Validators.pattern('^[A-Z][a-zA-Z]*$'),
       ]),
       description: new FormControl('', [
         Validators.required,
-        Validators.minLength(30)
+        Validators.minLength(30),
       ]),
       categorie: new FormControl('', Validators.required),
       date: new FormControl({ value: currentDate, disabled: true }),
-      status: new FormControl({ value: 'en_attente', disabled: true })
+      status: new FormControl({ value: 'en_attente', disabled: true }),
     });
   }
 
@@ -53,12 +53,12 @@ export class SuggestionFormComponent implements OnInit {
         categorie: this.suggestionForm.controls['categorie'].value,
         date: this.suggestionForm.controls['date'].value,
         status: this.suggestionForm.controls['status'].value,
-        nbLikes: 0 // Default value
+        nbLikes: 0, // Default value
       };
-      
+
       console.log('Nouvelle suggestion:', newSuggestion);
       // TODO: Add to service/array
-      
+
       // Navigate back to suggestions list
       this.router.navigate(['/suggestions']);
     }
