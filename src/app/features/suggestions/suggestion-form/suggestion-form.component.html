@@ -1,0 +1,102 @@
+<div class="form-container">
+  <div class="form-card">
+    <h2 class="form-title">Ajouter une nouvelle suggestion</h2>
+    
+    <form [formGroup]="suggestionForm" (ngSubmit)="onSubmit()">
+      <!-- Titre -->
+      <div class="form-group">
+        <label for="titre">Titre :</label>
+        <input 
+          type="text" 
+          id="titre" 
+          class="form-control"
+          formControlName="titre"
+          [class.error]="suggestionForm.controls['titre'].invalid && suggestionForm.controls['titre'].touched"
+          placeholder="Entrez le titre">
+        <div class="error-message" 
+             *ngIf="suggestionForm.controls['titre'].invalid && suggestionForm.controls['titre'].touched">
+          <i class="bi bi-exclamation-circle-fill"></i>
+          <span *ngIf="suggestionForm.controls['titre'].errors?.['required']">Le titre est obligatoire.</span>
+          <span *ngIf="suggestionForm.controls['titre'].errors?.['minlength']">Le titre doit contenir au minimum 5 caractères.</span>
+          <span *ngIf="suggestionForm.controls['titre'].errors?.['pattern']">Le titre doit commencer par une majuscule et contenir uniquement des lettres.</span>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="form-group">
+        <label for="description">Description :</label>
+        <textarea 
+          id="description" 
+          class="form-control"
+          formControlName="description"
+          [class.error]="suggestionForm.controls['description'].invalid && suggestionForm.controls['description'].touched"
+          placeholder="Décrivez votre suggestion en détail"
+          rows="5"></textarea>
+        <div class="error-message" 
+             *ngIf="suggestionForm.controls['description'].invalid && suggestionForm.controls['description'].touched">
+          <i class="bi bi-exclamation-circle-fill"></i>
+          <span *ngIf="suggestionForm.controls['description'].errors?.['required']">La description est obligatoire.</span>
+          <span *ngIf="suggestionForm.controls['description'].errors?.['minlength']">La description doit contenir au minimum 30 caractères.</span>
+        </div>
+      </div>
+
+      <!-- Catégorie -->
+      <div class="form-group">
+        <label for="categorie">Catégorie :</label>
+        <select 
+          id="categorie" 
+          class="form-control"
+          formControlName="categorie"
+          [class.error]="suggestionForm.controls['categorie'].invalid && suggestionForm.controls['categorie'].touched">
+          <option value="" disabled selected>-- Sélectionnez une catégorie --</option>
+          <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+        </select>
+        <div class="error-message" 
+             *ngIf="suggestionForm.controls['categorie'].invalid && suggestionForm.controls['categorie'].touched">
+          <i class="bi bi-exclamation-circle-fill"></i>
+          <span>La catégorie est obligatoire.</span>
+        </div>
+      </div>
+
+      <!-- Date -->
+      <div class="form-group">
+        <label for="date">Date :</label>
+        <input 
+          type="date" 
+          id="date" 
+          class="form-control"
+          formControlName="date"
+          readonly>
+      </div>
+
+      <!-- Status -->
+      <div class="form-group">
+        <label for="status">Status :</label>
+        <input 
+          type="text" 
+          id="status" 
+          class="form-control"
+          formControlName="status"
+          readonly>
+      </div>
+
+      <!-- Buttons -->
+      <div class="form-actions">
+        <button 
+          type="button" 
+          class="btn btn-secondary" 
+          [routerLink]="['/suggestions']">
+          <i class="bi bi-x-circle"></i>
+          Annuler
+        </button>
+        <button 
+          type="submit" 
+          class="btn btn-primary"
+          [disabled]="suggestionForm.invalid">
+          <i class="bi bi-check-circle"></i>
+          Soumettre
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

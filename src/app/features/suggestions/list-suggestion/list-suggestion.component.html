@@ -1,9 +1,15 @@
 <div class="container">
   <div class="header-section">
-    <h1 class="title">Suggestions</h1>
-    <p class="count">
-      {{ filteredSuggestions.length }} of {{ suggestions.length }} suggestions
-    </p>
+    <div>
+      <h1 class="title">Suggestions</h1>
+      <p class="count">
+        {{ filteredSuggestions.length }} of {{ suggestions.length }} suggestions
+      </p>
+    </div>
+    <button class="btn-add" [routerLink]="['/suggestions', 'new']">
+      <i class="bi bi-plus-circle"></i>
+      <span>Ajouter suggestion</span>
+    </button>
   </div>
 
   <div class="search-wrapper">

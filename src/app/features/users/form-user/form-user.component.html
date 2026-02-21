@@ -1,7 +1,205 @@
-<p>form-user works!</p>
-<label>username</label>
-<input type="text" placeholder="enter username" [formControl]="userName" />
-<br />
-<br />
-<label>password</label>
-<input type="password" placeholder="enter password" [formControl]="password" />
+<div class="forms-wrapper">
+  <div class="form-container form-control-container">
+    <div class="form-card">
+      <div class="form-header">
+        <h1 class="form-title">Form Control</h1>
+        <p class="form-subtitle">Enter your credentials to continue</p>
+      </div>
+
+      <form class="form-content form-control-content">
+        <div class="form-group">
+          <label class="form-label">Username</label>
+          <input
+            class="form-input"
+            type="text"
+            placeholder="Enter username"
+            [formControl]="userName"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input
+            class="form-input"
+            type="password"
+            placeholder="Enter password"
+            [formControl]="password"
+          />
+        </div>
+
+        <button
+          class="btn-submit"
+          type="submit"
+          [disabled]="userName.invalid || password.invalid"
+        >
+          <span>Submit</span>
+          <i class="bi bi-arrow-right"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="form-container form-group-container">
+    <div class="form-card">
+      <div class="form-header">
+        <h1 class="form-title">Form Group</h1>
+        <p class="form-subtitle">Enter your credentials to continue</p>
+      </div>
+
+      <form [formGroup]="formUser" class="form-content">
+        <div class="form-group">
+          <label class="form-label">Username</label>
+          <input
+            class="form-input"
+            type="text"
+            placeholder="Enter username"
+            formControlName="userName"
+            [class.error]="f['userName'].invalid && f['userName'].touched"
+          />
+          <div
+            class="error-message"
+            *ngIf="f['userName'].invalid && f['userName'].touched"
+          >
+            <span *ngIf="f['userName'].errors?.['required']">
+              <i class="bi bi-exclamation-circle-fill"></i>
+              Username is required
+            </span>
+            <span *ngIf="f['userName'].errors?.['minlength']">
+              <i class="bi bi-exclamation-circle-fill"></i>
+              Username must be at least 3 characters
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input
+            class="form-input"
+            type="password"
+            placeholder="Enter password"
+            formControlName="password"
+            [class.error]="f['password'].invalid && f['password'].touched"
+          />
+          <div
+            class="error-message"
+            *ngIf="f['password'].invalid && f['password'].touched"
+          >
+            <span *ngIf="f['password'].errors?.['required']">
+              <i class="bi bi-exclamation-circle-fill"></i>
+              Password is required
+            </span>
+            <span *ngIf="f['password'].errors?.['minlength']">
+              <i class="bi bi-exclamation-circle-fill"></i>
+              Password must be at least 8 characters
+            </span>
+            <span *ngIf="f['password'].errors?.['pattern']">
+              <i class="bi bi-exclamation-circle-fill"></i>
+              Password must contain uppercase, lowercase, and number
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input
+            class="form-input"
+            type="email"
+            placeholder="Enter email"
+            formControlName="email"
+            [class.error]="f['email'].invalid && f['email'].touched"
+          />
+          <div
+            class="error-message"
+            *ngIf="f['email'].invalid && f['email'].touched"
+          >
+            <span *ngIf="f['email'].errors?.['required']">
+              <i class="bi bi-exclamation-circle-fill"></i>
+              Email is required
+            </span>
+            <span *ngIf="f['email'].errors?.['email']">
+              <i class="bi bi-exclamation-circle-fill"></i>
+              Please enter a valid email
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Phone</label>
+          <input
+            class="form-input"
+            type="tel"
+            placeholder="Enter phone number"
+            formControlName="phone"
+            [class.error]="f['phone'].invalid && f['phone'].touched"
+          />
+          <div
+            class="error-message"
+            *ngIf="f['phone'].invalid && f['phone'].touched"
+          >
+            <span *ngIf="f['phone'].errors?.['required']">
+              <i class="bi bi-exclamation-circle-fill"></i>
+              Phone is required
+            </span>
+            <span *ngIf="f['phone'].errors?.['pattern']">
+              <i class="bi bi-exclamation-circle-fill"></i>
+              Phone must be 10 digits
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Address</label>
+          <input
+            class="form-input"
+            type="text"
+            placeholder="Enter address"
+            formControlName="address"
+            [class.error]="f['address'].invalid && f['address'].touched"
+          />
+          <div
+            class="error-message"
+            *ngIf="f['address'].invalid && f['address'].touched"
+          >
+            <span *ngIf="f['address'].errors?.['required']">
+              <i class="bi bi-exclamation-circle-fill"></i>
+              Address is required
+            </span>
+            <span *ngIf="f['address'].errors?.['minlength']">
+              <i class="bi bi-exclamation-circle-fill"></i>
+              Address must be at least 5 characters
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">City</label>
+          <input
+            class="form-input"
+            type="text"
+            placeholder="Enter city"
+            formControlName="city"
+            [class.error]="f['city'].invalid && f['city'].touched"
+          />
+          <div
+            class="error-message"
+            *ngIf="f['city'].invalid && f['city'].touched"
+          >
+            <span *ngIf="f['city'].errors?.['required']">
+              <i class="bi bi-exclamation-circle-fill"></i>
+              City is required
+            </span>
+            <span *ngIf="f['city'].errors?.['minlength']">
+              <i class="bi bi-exclamation-circle-fill"></i>
+              City must be at least 2 characters
+            </span>
+          </div>
+        </div>
+
+        <button class="btn-submit" [disabled]="formUser.invalid" type="submit">
+          <span>Submit</span>
+          <i class="bi bi-arrow-right"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
